@@ -22,3 +22,5 @@ Réponse JSON :
 ```bash
 {"result":49}
 ```
+
+![Backend tests](https://github.com/<user>/<repo>/actions/workflows/test.yml/badge.svg)
