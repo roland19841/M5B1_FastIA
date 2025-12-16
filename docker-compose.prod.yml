@@ -1,0 +1,7 @@
+# Permet de lancer l'image back end stockée sous GitHub en allant chercher la variable "APP_VERSIOn" du fichier .env.example car .env est "gitignore"
+services:
+  backend:
+    image: roland19841/fastia-backend:${APP_VERSION:-latest}
+    ports:
+      - "8000:8000"
+

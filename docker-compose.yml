@@ -1,3 +1,5 @@
+#Permet de builder le front en le back
+
 services:
   backend:
     build: ./backend
