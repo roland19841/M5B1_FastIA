@@ -1,5 +1,67 @@
 # FastIA – Template MLOps minimal (Streamlit + FastAPI + Docker + CI)
 
+## 🚀 Démarrage rapide
+
+### Prérequis
+- **Git** installé → https://git-scm.com/
+- **Docker Desktop** (avec Docker Compose)
+- **Python 3.11** (pour exécution locale sans Docker, optionnel)
+
+---
+
+### 1️⃣ Cloner le dépôt
+```bash
+git clone https://github.com/<USER>/<REPO>.git
+cd <REPO>
+```
+
+---
+
+### 2️⃣ Lancer avec Docker (recommandé)
+Cette méthode garantit un environnement **identique pour tous**.
+
+```bash
+docker compose up --build
+```
+
+Accès :
+- Frontend : http://localhost:8501
+- Backend : http://localhost:8000
+- Healthcheck : http://localhost:8000/health
+
+Arrêter :
+```bash
+docker compose down
+```
+
+---
+
+### 3️⃣ Lancer en local sans Docker (optionnel)
+
+#### Backend
+```bash
+cd backend
+python3.11 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python -m pytest -q
+uvicorn main:app --reload --port 8000
+```
+
+#### Frontend
+```bash
+cd frontend
+python3.11 -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+Puis :
+```bash
+streamlit run app.py
+```
+
+---
+
 Ce dépôt fournit une **architecture de base reproductible** pour les projets IA de FastIA.  
 Il propose un frontend simple, une API FastAPI structurée, des tests automatisés et une chaîne CI/CD via GitHub Actions.
 
@@ -53,11 +115,6 @@ Il propose un frontend simple, une API FastAPI structurée, des tests automatis�
 - Affichage du résultat (carré de l’entier)
 - Logs via **Loguru**
 
-Lancement local :
-```bash
-streamlit run frontend/app.py
-```
-
 ---
 
 ## 🔧 Backend (FastAPI)
@@ -69,29 +126,12 @@ streamlit run frontend/app.py
 | GET  | `/health`  | Vérification de l’état de l’API |
 | POST | `/calcul`  | Retourne le carré d’un entier |
 
-### Exemple d’appel
-```bash
-curl -X POST http://localhost:8000/calcul \
-  -H "Content-Type: application/json" \
-  -d '{"value": 5}'
-```
-
-Réponse :
-```json
-{ "result": 25 }
-```
-
-- Validation des entrées via **Pydantic**
-- Logique métier isolée dans `modules/calcul.py`
-- Logs via **Loguru**
-
 ---
 
 ## 🧪 Tests
 
 Les tests unitaires sont écrits avec **pytest** et couvrent la fonction `calcul()`.
 
-Lancement local :
 ```bash
 cd backend
 python -m pytest -q
@@ -101,27 +141,16 @@ python -m pytest -q
 
 ## 🐳 Docker & Docker Compose
 
-Lancer l’application complète :
 ```bash
 docker compose up --build
-```
-
-Services exposés :
-- Frontend : http://localhost:8501
-- Backend : http://localhost:8000
-- Healthcheck : http://localhost:8000/health
-
-Logs :
-```bash
-docker compose logs -f
 ```
 
 ---
 
 ## 🔄 CI/CD – GitHub Actions
 
-- Exécution automatique des tests à chaque push sur `main` ou `dev`
-- Vérification continue de la qualité du code backend
+- Tests automatisés à chaque push sur `main` ou `dev`
+- Validation continue du backend
 
 ---
 
@@ -131,19 +160,6 @@ Le projet suit la convention **Semantic Versioning (SemVer)** :
 ```
 vMAJOR.MINOR.PATCH
 ```
-
----
-
-## ✅ Conformité aux exigences pédagogiques
-
-- Frontend Streamlit fonctionnel
-- API FastAPI avec 3 routes
-- Logique métier isolée et testée
-- Logs via Loguru
-- Tests automatisés avec pytest
-- Docker & Docker Compose opérationnels
-- CI GitHub Actions fonctionnelle
-- Structure claire et maintenable
 
 ---
 
