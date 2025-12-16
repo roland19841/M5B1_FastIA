@@ -164,3 +164,8 @@ vMAJOR.MINOR.PATCH
 ---
 
 Projet réalisé dans le cadre d’un exercice MLOps – FastIA
+
+
+
+
+docker login -u roland19841
