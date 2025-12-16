@@ -161,11 +161,14 @@ Le projet suit la convention **Semantic Versioning (SemVer)** :
 vMAJOR.MINOR.PATCH
 ```
 
+## 🐳 Pull & Run (Docker Hub)
+
+### Backend
+```bash
+docker pull <DOCKER_USERNAME>/fastia-backend:latest
+docker run -p 8000:8000 <DOCKER_USERNAME>/fastia-backend:latest
+```
 ---
 
 Projet réalisé dans le cadre d’un exercice MLOps – FastIA
 
-
-
-
-docker login -u roland19841
